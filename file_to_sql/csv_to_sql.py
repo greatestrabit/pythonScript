@@ -2,7 +2,7 @@ import os
 
 from file_to_sql import list_to_sql_util as util
 
-filepath = '/home/dugj/workspace/Enterprise-Registration-Data-of-Chinese-Mainland/Enterprise-Registration-Data/csv/1999/上海.csv'
+filepath = '~/workspace/Enterprise-Registration-Data-of-Chinese-Mainland/Enterprise-Registration-Data/csv/1999/上海.csv'
 separator = ','
 
 if os.path.isfile(filepath):
