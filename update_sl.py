@@ -1,6 +1,11 @@
 import pymysql
 from decimal import Decimal
 
+"""
+pip install pymysql
+pymysql操作简单,性能较低,生产环境推荐mysqlclient
+"""
+
 print('\ndelete from common_sl;\n')
 db = pymysql.connect(host="fatdb", port=5688, user='root', passwd='root123456', db='accounting_common')
 cursor = db.cursor()

@@ -2,6 +2,12 @@ import imaplib
 import os
 import time
 
+"""
+系统转ubuntu后,没有好用的邮件客户端
+Thunderbird Mail关掉之后不能后台轮循查找新邮件
+该脚本简单解决该问题,收到新邮件通知后发送系统通知
+"""
+
 def get_newmail_count():
     obj = imaplib.IMAP4_SSL('imaphz.qiye.163.com', '993')
     obj.login('xiaodu.email@gmail.com', 'passowrd')
