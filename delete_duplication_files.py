@@ -19,19 +19,27 @@ def get_file_id(file):
     return str(hash).upper()
 
 
-source_file_id = set()
-for root, dirs, files in os.walk(source_dir):
-    for name in files:
-        absolutePath = os.path.join(root, name)
-        print(absolutePath)
-        file_id = get_file_id(absolutePath)
-        source_file_id.add(file_id)
+def delete_dup_file():
+    source_file_id = set()
+    for root, dirs, files in os.walk(source_dir):
+        for name in files:
+            absolutePath = os.path.join(root, name)
+            print(absolutePath)
+            file_id = get_file_id(absolutePath)
+            source_file_id.add(file_id)
 
-for root, dirs, files in os.walk(target_dir):
-    for name in files:
-        absolutePath = os.path.join(root, name)
-        print(absolutePath)
-        file_id = get_file_id(absolutePath)
-        if file_id in source_file_id:
-            print('可以删除的文件: ' + absolutePath)
-            os.remove(absolutePath)
+    for root, dirs, files in os.walk(target_dir):
+        for name in files:
+            absolutePath = os.path.join(root, name)
+            print(absolutePath)
+            file_id = get_file_id(absolutePath)
+            if file_id in source_file_id:
+                print('可以删除的文件: ' + absolutePath)
+                os.remove(absolutePath)
+
+
+if source_dir in target_dir or target_dir in source_dir:
+    print('无法处理子文件夹')
+else:
+    delete_dup_file()
+
