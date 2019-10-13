@@ -25,13 +25,13 @@ def delete_dup_file(source_file_id, source_dir):
             print(absolutePath)
             file_id = get_file_id(absolutePath)
             if file_id in source_file_id:
-                print('删除文件:' + absolutePath)
+                print('删除文件:' + absolutePath + ',已存在文件:' + source_file_id[file_id])
                 os.remove(absolutePath)
             else:
-                source_file_id.add(file_id)
+                source_file_id[file_id] = absolutePath
 
 
-source_file_id = set()
+source_file_id = {}
 for file in file_list:
     delete_dup_file(source_file_id, file)
 
