@@ -1,4 +1,5 @@
 import os
+import time
 
 '''
 文件夹结构为
@@ -27,6 +28,15 @@ child_dir_list.sort(reverse=True)
 
 def get_file_path(last_file: str):
     valid = False
+
+    for child_dir in child_dir_list:
+        child_file_list = os.listdir(os.path.join(root_dir, child_dir))
+        child_file_list.sort()
+
+        if last_file == os.path.join(root_dir, child_dir, child_file_list[len(child_file_list) - 1]) and child_dir == \
+                child_dir_list[len(child_dir_list) - 1]:
+            last_file = ''
+
     for child_dir in child_dir_list:
         count = int(child_dir)
         child_index = 0
@@ -56,4 +66,9 @@ def get_file_path(last_file: str):
                 child_index += 1
 
 
-print(get_file_path(""))
+last_path = ""
+for i in range(100):
+    path_list = get_file_path(last_path)
+    last_path = path_list[len(path_list) - 1]
+    print(path_list)
+    time.sleep(1)
